@@ -20,7 +20,7 @@ async function AddUser(e){
     }
 
     try{
-        const response = await axios.post('http://localhost:3000/user/sign-up',obj);
+        const response = await axios.post('http://54.167.115.69:3000/user/sign-up',obj);
         console.log(response.data.newSignUp);
     }
     catch(err){

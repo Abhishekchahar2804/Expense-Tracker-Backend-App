@@ -28,7 +28,7 @@ async function addItem(e) {
   try {
     let token = localStorage.getItem("token");
     let response = await axios.post(
-      "http://localhost:3000/expense/add-expense",
+      "http://54.167.115.69:3000/expense/add-expense",
       obj,
       { headers: { Authorization: token } }
     );
@@ -44,7 +44,7 @@ async function BuyPremium(e) {
   try {
     let token = localStorage.getItem("token");
     const response = await axios.get(
-      "http://localhost:3000/purchase/premiummembership",
+      "http://54.167.115.69:3000/purchase/premiummembership",
       { headers: { Authorization: token } }
     );
 
@@ -53,7 +53,7 @@ async function BuyPremium(e) {
       order_id: response.data.order.id,
       handler: async function (result) {
         const res = await axios.post(
-          "http://localhost:3000/purchase/updatestatus",
+          "http://54.167.115.69:3000/purchase/updatestatus",
           {
             order_id: options.order_id,
             payment_id: result.razorpay_payment_id,
@@ -76,7 +76,7 @@ async function BuyPremium(e) {
     rzpl.open();
     rzpl.on("payment.failed", async function (res) {
       await axios.post(
-        "http://localhost:3000/purchase/updatefailure",
+        "http://54.167.115.69:3000/purchase/updatefailure",
         {
           order_id: response.data.order.id,
         },
@@ -94,7 +94,7 @@ async function premiumFeature(e) {
   try {
     let token = localStorage.getItem("token");
     const response = await axios.get(
-      "http://localhost:3000/premium/leaderboard",
+      "http://54.167.115.69:3000/premium/leaderboard",
       {
         headers: { Authorization: token },
       }
@@ -118,7 +118,7 @@ async function premiumFeature(e) {
 async function download() {
   let token = localStorage.getItem("token");
   try {
-    const response = await axios.get("http://localhost:3000/expense/download", {
+    const response = await axios.get("http://54.167.115.69:3000/expense/download", {
       headers: { Authorization: token },
     });
     var a = document.createElement("a");
@@ -150,7 +150,7 @@ function showDownloadLinks() {
     const token = localStorage.getItem("token");
 
     const downloadLinks = await axios.get(
-      "http://localhost:3000/expense/show-downloadLink",
+      "http://54.167.115.69:3000/expense/show-downloadLink",
       { headers: { Authorization: token } }
     );
     console.log("downloadLinks", downloadLinks);
@@ -204,7 +204,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const page = 1;
     let pagesize = localStorage.getItem("pagesize");
     let response = await axios.get(
-      `http://localhost:3000/expense/expenses/load-data?page=${page}&pagesize=${pagesize}`,
+      `http://54.167.115.69:3000/expense/expenses/load-data?page=${page}&pagesize=${pagesize}`,
       { headers: { Authorization: token } }
     );
     //console.log(response);
@@ -264,7 +264,7 @@ async function getProducts(page) {
   const token = localStorage.getItem("token");
   const pageSize = localStorage.getItem("pagesize");
   let response = await axios.get(
-    `http://localhost:3000/expense/expenses/load-data?page=${page}&pagesize=${pageSize}`,
+    `http://54.167.115.69:3000/expense/expenses/load-data?page=${page}&pagesize=${pageSize}`,
     { headers: { Authorization: token } }
   );
   const ul = document.getElementById("details");
@@ -301,7 +301,7 @@ function showOnScreen(obj) {
   deleteBtn.onclick = async (e) => {
     let li = e.target.parentElement;
     let id = obj.id;
-    await axios.delete("http://localhost:3000/expense/delete-expense/" + id);
+    await axios.delete("http://54.167.115.69:3000/expense/delete-expense/" + id);
     itemList.removeChild(li);
   };
 
@@ -316,7 +316,7 @@ function showOnScreen(obj) {
   //     document.getElementById('description').value=obj.description;
   //     document.getElementById('category').value=obj.category;
   //     let id = obj.id;
-  //     await axios.delete('http://localhost:3000/delete-expense/'+id);
+  //     await axios.delete('http://54.167.115.69:3000/delete-expense/'+id);
   //     itemList.removeChild(li);
   // }
 
